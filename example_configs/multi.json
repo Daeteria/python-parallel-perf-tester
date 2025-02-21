@@ -1,0 +1,22 @@
+{
+    "iterations": 10,
+    "task": "multi",
+    "task_args": [
+        200000
+    ],
+    "task_count": 500,
+    "workers": [
+        0,
+        1,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        16
+    ],
+    "wait_time_after_runner": 2.0,
+    "wait_time_after_iteration": 2.0,
+    "gc_after_iteration": true
+}

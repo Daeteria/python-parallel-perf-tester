@@ -59,14 +59,14 @@ def pool_test_pipeline(
 
     # Blocking until all tasks are done
     results = easy_pool.get_results()
-    print(f"{print_prefix} Work (waiting) runtime: {collect_timer.get_duration_str()}")
+    print(f"{print_prefix} Work runtime: {collect_timer.get_duration_str()}")
     work_runtime = collect_timer.get_duration()
 
     avg_task_runtime = avg_float([runtime for _, _, runtime in results])
 
     del easy_pool
 
-    print(f"{print_prefix} Total time: {timer.get_duration_str()}")
+    print(f"{print_prefix} Total runtime: {timer.get_duration_str()}")
     print()
 
     total_runtime = timer.get_duration()

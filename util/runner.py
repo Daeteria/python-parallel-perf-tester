@@ -2,12 +2,12 @@ from util.math import avg_float_from_tuple_list
 
 
 class Runner:
-    def __init__(self, name: str, workers: int, job_details: str, job_count: int):
+    def __init__(self, name: str, workers: int, task_details: str, task_count: int):
         self.name = name
         self.workers = workers
         self.runtimes = []
-        self.job_details = job_details
-        self.job_count = job_count
+        self.task_details = task_details
+        self.task_count = task_count
 
     def add_runtime(self, runtime: tuple[float, float, float, float]):
         self.runtimes.append(runtime)
@@ -15,14 +15,25 @@ class Runner:
     def get_avg_runtimes(self) -> tuple[float, float, float, float]:
         return avg_float_from_tuple_list(self.runtimes)
 
+    def get_tasks_per_second(self) -> float:
+        if len(self.runtimes) == 0:
+            return 0
+
+        avg_total_runtime = self.get_avg_runtimes()[3]
+        if avg_total_runtime == 0:
+            return 0
+
+        return self.task_count / avg_total_runtime
+
     def to_csv(self) -> list[list]:
         return [
             [
                 self.name,
                 self.workers,
-                self.job_details,
-                self.job_count,
+                self.task_details,
+                self.task_count,
                 *self.get_avg_runtimes(),
+                self.get_tasks_per_second(),
             ]
         ]
 

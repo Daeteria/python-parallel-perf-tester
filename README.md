@@ -87,7 +87,7 @@ The script accepts the following arguments:
 If you want to build the image and run the app directly with Docker, use:
 
 ```sh
-docker build -t {img_name} -f Dockerfile . && docker run --rm -v ./:/app {img_name} python3 /app/main.py --config={config_file}
+docker build -t {img_name} -f Dockerfile . && docker run --rm -it -v ./:/app {img_name} python3 /app/main.py --config={config_file}
 ```
 
 and replace `{img_name}` and `{config_file}` with what you prefer.

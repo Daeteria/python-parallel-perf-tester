@@ -29,4 +29,4 @@ if [ -z "$CONFIG" ]; then
 fi
 
 # Run
-docker run --rm -e TZ=$TZ -v ./:/app $IMG_NAME python3 /app/main.py --config=$CONFIG
+docker run --rm -e TZ=$TZ -it -v ./:/app $IMG_NAME python3 /app/main.py --config=$CONFIG

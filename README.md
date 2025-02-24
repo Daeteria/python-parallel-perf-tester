@@ -30,15 +30,25 @@ In a mixed workload of randomized tasks, my own testing resulted in a 5.9x avera
 - CSV export of results
 
 
-## Installation
+## Requirements
+
+- Python 3.x (tested with 3.9.x)
+- Python libraries listed in `requirements.txt`
+
+
+## Setup
+
+Have Python 3.x installed on your system. See [official site](https://www.python.org/downloads/) for more. Using a [venv](https://docs.python.org/3/library/venv.html) is recommended, although not necessary.
+
+Clone the repo and install dependencies:
 
 ```sh
 # Clone the repository
 git clone https://github.com/daeteria/python-parallel-perf-tester.git
-cd parallel-performance-tester
+cd python-parallel-perf-tester
 
 # Install dependencies
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 
@@ -74,7 +84,7 @@ Where
 - `wait_time_after_iteration`: How long to wait after each test iteration loop in seconds. Can be used as a cooldown period and a reset for your CPU between iterations, so that the iterations won't affect each other.
 - `gc_after_iteration`: Whether or not to run garbage collection after each test iteration.
 
-Refer to the example configurations in `example_configs` for more configurations.
+Refer to `example_configs` for more configurations.
 
 
 ## Task types
@@ -109,11 +119,6 @@ parallel_10,10,"100/1000; [20, 20]; 0.5",10000,0.05439281463623047,2.59165000915
 parallel_12,12,"100/1000; [20, 20]; 0.5",10000,0.061316490173339844,2.3652519385019937,0.0027502798557281494,2.432237227757772,4111.4410575891025
 parallel_16,16,"100/1000; [20, 20]; 0.5",10000,0.087737242380778,2.1500957012176514,0.0033195030212402345,2.2449360688527427,4454.469834907336
 ```
-
-## Requirements
-
-- Python 3.x (tested with 3.9.x)
-- Python libraries listed in `requirements.txt`
 
 
 ## Credits

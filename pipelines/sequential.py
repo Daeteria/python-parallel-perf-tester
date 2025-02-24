@@ -27,7 +27,7 @@ def sequential_test_pipeline(
     total_runtime = timer.get_duration()
     avg_task_runtime = total_runtime / len(tasks)
 
-    print(f"Sequential test pipeline: Work runtime: {timer.get_duration_str()}")
+    print(f"Sequential test pipeline: Total runtime: {timer.get_duration_str()}")
     print()
 
     return (0, total_runtime, avg_task_runtime, total_runtime)

@@ -19,5 +19,6 @@
     ],
     "wait_time_after_runner": 2.0,
     "wait_time_after_iteration": 2.0,
-    "gc_after_iteration": true
+    "gc_after_iteration": true,
+    "multiprocessing_start_method": null
 }

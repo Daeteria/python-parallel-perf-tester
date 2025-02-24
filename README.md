@@ -46,7 +46,7 @@ git clone https://github.com/daeteria/python-parallel-perf-tester.git
 cd python-parallel-perf-tester
 ```
 
-### Install requirements [running on host]
+### Install requirements [directly on host]
 
 Install Python 3.x on your system. See [official site](https://www.python.org/downloads/) for more. Using a [venv](https://docs.python.org/3/library/venv.html) is recommended, although not necessary.
 
@@ -63,14 +63,14 @@ python3 -m pip install -r requirements.txt
 Alternatively you can use Docker. See [official site](https://docs.docker.com/engine/install/) for installation instructions.
 
 
-### Usage [running on host]
+### Running [directly on host]
 
 ```sh
 python main.py --config example_configs/sum.json
 ```
 
 
-### Usage [docker]
+### Running [docker]
 
 There is a little wrapper script `docker_run.sh` that can be used to build a Docker image and run the app in a container. The script also mounts the current directory inside the container, so your benchmark results get saved on the host correclty.
 
@@ -78,7 +78,7 @@ There is a little wrapper script `docker_run.sh` that can be used to build a Doc
 ./docker_run.sh --config example_configs/sum.json
 ```
 
-The script access the following arguments:
+The script accepts the following arguments:
 - `--config`: The config file to use
 - `--no-build`: Optionally skip build and only run the (existing) image.
 - `--img_name`: Optionally specify a custom image name. Defaults to `pppt` (Python parallel perf tester).
@@ -93,7 +93,7 @@ docker build -t {img_name} -f Dockerfile . && docker run --rm -v ./:/app {img_na
 and replace `{img_name}` and `{config_file}` with what you prefer.
 
 
-### Usage [docker compose]
+### Running [docker compose]
 
 There is also a wrapper script `compose_run.sh` for docker compose.
 
@@ -101,7 +101,7 @@ There is also a wrapper script `compose_run.sh` for docker compose.
 ./compose_run.sh --config example_configs/sum.json
 ```
 
-The script access the following arguments:
+The script accepts the following arguments:
 - `--config`: The config file to use
 - `--tz`: Optionally specify a timezone that will be used when naming CSV exports. Defaults to `UTC`.
 

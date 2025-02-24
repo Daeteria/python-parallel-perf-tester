@@ -16,16 +16,15 @@ from util.csv import csv_export
 import argparse
 import json
 from util.runner import Runner, print_runtimes
-from work.compression import file_compression_task, file_compression_task_random_params
+from work.multi import multiplication_task, multiplication_task_random_params
+from work.zip import file_compression_task, file_compression_task_random_params
 from work.img import img_manipulation_task
 from work.io import io_task, io_task_random_params
-from work.math import (
-    multiplication_task,
-    multiplication_task_random_params,
+from work.sum import (
     summing_task,
     summing_task_random_params,
 )
-from work.matrix_inv import matrix_inversion_task, matrix_inversion_task_random_params
+from work.matrix import matrix_inversion_task, matrix_inversion_task_random_params
 from work.password import (
     password_hashing_and_checking_task,
     password_hashing_and_checking_task_random_params,

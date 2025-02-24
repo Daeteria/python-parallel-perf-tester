@@ -67,7 +67,7 @@ A valid configuration file is as follows:
 Where
 - `iterations`: How many test passes to perform per worker configuration. The output will be an average of all passes.
 - `task`: Which task to run. Refer to the Task types section below for more.
-- `task_args`: A list of arguments to pass to the task function. Check the `task_func` mapping in `main.py` to see what is the reffered function and what arguments it takes in from the function implementation. All tasks are defined in the `work` module.
+- `task_args`: A list of arguments to pass to the task function. Check the `task_func` mapping in `main.py` to see what is the reffered function and what arguments it takes in from the function implementation. All tasks are defined in the `work` module. With the `random` task type this parameter is used to select which task types to include in the task list. 
 - `task_count`: How many tasks to perform per test pass, e.g. how many times the task function gets called in total.
 - `workers`: A list of worker configurations to test. 0 here means sequential and is a good reference point to use. 1 means that you have a single parallel process that gets fed tasks by the main process, so basically "sequential with scheduling overhead". It is adviced to at maximum have your system's CPU core count of workers. You can of course try higher numbers, but this can lead to crashing.
 - `wait_time_after_runner`: How long to wait after each runner pipeline in seconds, e.g. between running the pipeline for 2 and then 4 workers. Can be used as a cooldown period for your CPU, so that the runs won't affect each other.
@@ -88,7 +88,7 @@ Refer to the example configurations in `example_configs` for more configurations
 - `matrix`: Matrix inversion [memory-intensive]
 - `img`: Image manipulation [computation, internally parallelized (OpenCV)]
 - `password`: Password hashing and checking [computation]
-- `random`: Random mix of above tasks
+- `random`: Random mix of above tasks. Note that you can set a list of task types you wish to use by defining them in `task_args`, e.g. `["io", "zip", "img"]`. Leaving the array empty will use all available options when generating the task list. The arguments for each task are pulled at random from predefined pools of viable options. See `work/{task_type}.py` for details.
 
 
 ## Results

@@ -32,32 +32,89 @@ In a mixed workload of randomized tasks, my own testing resulted in a 5.9x avera
 
 ## Requirements
 
-- Python 3.x (tested with 3.9.x)
+- Python 3.x (tested with 3.9.x, 3.13.x)
 - Python libraries listed in `requirements.txt`
 
 
-## Setup
+## Usage
 
-Have Python 3.x installed on your system. See [official site](https://www.python.org/downloads/) for more. Using a [venv](https://docs.python.org/3/library/venv.html) is recommended, although not necessary.
-
-Clone the repo and install dependencies:
+Clone the repo:
 
 ```sh
 # Clone the repository
 git clone https://github.com/daeteria/python-parallel-perf-tester.git
 cd python-parallel-perf-tester
+```
 
+### Install requirements [running on host]
+
+Install Python 3.x on your system. See [official site](https://www.python.org/downloads/) for more. Using a [venv](https://docs.python.org/3/library/venv.html) is recommended, although not necessary.
+
+Install Python modules:
+
+```sh
 # Install dependencies
 python3 -m pip install -r requirements.txt
 ```
 
 
-## Usage
+### Install requirements [docker]
+
+Alternatively you can use Docker. See [official site](https://docs.docker.com/engine/install/) for installation instructions.
+
+
+### Usage [running on host]
 
 ```sh
 python main.py --config example_configs/sum.json
 ```
 
+
+### Usage [docker]
+
+There is a little wrapper script `docker_run.sh` that can be used to build a Docker image and run the app in a container. The script also mounts the current directory inside the container, so your benchmark results get saved on the host correclty.
+
+```sh
+./docker_run.sh --config example_configs/sum.json
+```
+
+The script access the following arguments:
+- `--config`: The config file to use
+- `--no-build`: Optionally skip build and only run the (existing) image.
+- `--img_name`: Optionally specify a custom image name. Defaults to `pppt` (Python parallel perf tester).
+- `--tz`: Optionally specify a timezone that will be used when naming CSV exports. Defaults to `UTC`.
+
+If you want to build the image and run the app directly with Docker, use:
+
+```sh
+docker build -t {img_name} -f Dockerfile . && docker run --rm -v ./:/app {img_name} python3 /app/main.py --config={config_file}
+```
+
+and replace `{img_name}` and `{config_file}` with what you prefer.
+
+
+### Usage [docker compose]
+
+There is also a wrapper script `compose_run.sh` for docker compose.
+
+```sh
+./compose_run.sh --config example_configs/sum.json
+```
+
+The script access the following arguments:
+- `--config`: The config file to use
+- `--tz`: Optionally specify a timezone that will be used when naming CSV exports. Defaults to `UTC`.
+
+If you want to run directly with docker compose, use:
+
+```sh
+CONFIG={config_file} docker compose up
+```
+
+and replace `{config_file}` with the task you would like to run.
+
+
+## Configuration files
 
 A valid configuration file is as follows:
 

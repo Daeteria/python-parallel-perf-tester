@@ -1,0 +1,10 @@
+services:
+  pppt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: [ "python", "main.py", "--config", "${CONFIG}" ]
+    volumes:
+      - ./:/app/
+    environment:
+      - TZ=${TZ:-UTC}

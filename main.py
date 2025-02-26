@@ -207,7 +207,7 @@ def main():
         task_func = img_manipulation_task
         img = cv2.imread("img.jpg")
         task_args = [img]
-        task_details = f"{img.shape[0]}x{img.shape[1]}{img.shape[2]}"
+        task_details = f"{img.shape[0]}x{img.shape[1]}x{img.shape[2]}"
     elif config.task == "password":
         task_func = password_hashing_and_checking_task
         task_details = f"{task_args[0]}/{task_args[1]}; {task_args[2]}; {task_args[3]}"
@@ -249,10 +249,16 @@ def main():
             "Time: task avg",
             "Time: total",
             "Tasks per second",
+            "Speedup (vs sequential)",
         ]
     )
+
+    reference_tps = 0
+    if "sequential" in runners:
+        reference_tps = runners["sequential"].get_tasks_per_second()
+
     for key, runner in runners.items():
-        csv_data.extend(runner.to_csv())
+        csv_data.extend(runner.to_csv(reference_tps=reference_tps))
 
     csv_filename = f"results/{config.task}__{datetime.datetime.now().strftime('%Y_%m_%d__%H_%M')}.csv"
 

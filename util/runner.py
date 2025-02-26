@@ -25,7 +25,12 @@ class Runner:
 
         return self.task_count / avg_total_runtime
 
-    def to_csv(self) -> list[list]:
+    def to_csv(self, reference_tps: float = 0) -> list[list]:
+        tps = self.get_tasks_per_second()
+        tps_speedup = 0
+        if reference_tps != 0:
+            tps_speedup = tps / reference_tps
+
         return [
             [
                 self.name,
@@ -34,6 +39,7 @@ class Runner:
                 self.task_count,
                 *self.get_avg_runtimes(),
                 self.get_tasks_per_second(),
+                tps_speedup,
             ]
         ]
 

@@ -1,7 +1,11 @@
 {
     "iterations": 10,
     "task": "img",
-    "task_args": [],
+    "task_args": [
+        [
+            "img.jpg"
+        ]
+    ],
     "task_count": 500,
     "workers": [
         0,

@@ -2,11 +2,15 @@ import cv2
 import numpy as np
 
 
-def img_manipulation_task(img: np.ndarray, work_index: int) -> np.ndarray:
-    img = img_crop(img, 1.0)
-    img = img_resize(img, 512)
-    img = img_enhance_contrast(img, 2.0)
-    return img
+def img_manipulation_task(imgs: list[np.ndarray], work_index: int) -> list[np.ndarray]:
+    imgs_out = []
+    for img in imgs:
+        img_out = img_crop(img, 1.0)
+        img_out = img_resize(img_out, 512)
+        img_out = img_enhance_contrast(img_out, 2.0)
+        imgs_out.append(img_out)
+
+    return imgs_out
 
 
 def img_resize(img: np.ndarray, max_size: int) -> np.ndarray:
